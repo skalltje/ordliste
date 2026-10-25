@@ -14,7 +14,7 @@ Ordlisten er basert på *Pedersen K. Ordliste*, med rundt 1000 ordpar. Mange av 
 - **Detaljvisning** med alle betydninger og merknader som «gammelt ord». Et trykk på en oversettelse slår den opp i motsatt retning.
 - **Favoritter** (☆) og **siste søk**, lagret på enheten.
 - **Offline:** Etter første besøk kan appen brukes uten nett, også i flymodus.
-- **Mørk og lys modus** etter systeminnstillingen.
+- **Samme utseende som [Læstadiansk prekensøk](https://skalltje.github.io/prekensok/):** mørkt blågrått tema med salviegrønn aksent.
 
 ## Bruk og installering
 
@@ -30,6 +30,10 @@ Appen kan brukes rett i nettleseren på https://skalltje.github.io/ordliste/, ut
 
 Når en ny versjon er publisert, viser appen *«En ny versjon av ordlisten er klar»* neste gang den åpnes med nett. Trykk **Oppdater**.
 
+## Skrifttype
+
+Appen bruker [Source Sans 3](https://github.com/adobe-fonts/source-sans), © 2010–2024 Adobe, med Reserved Font Name «Source». Skrifttypen er lisensiert under [SIL Open Font License 1.1](https://openfontlicense.org). Den er bygd inn i `index.html`, slik at den også virker offline.
+
 ## Personvern
 
 Appen har ingen sporing, ingen informasjonskapsler og ingen server-del. GitHub Pages leverer bare de statiske filene. Favoritter og søkehistorikk lagres bare i nettleserens `localStorage` på din egen enhet, og hver nettleser og installert app har sin egen kopi. Avinstallerer du appen eller tømmer nettstedsdata, forsvinner de.
@@ -40,7 +44,7 @@ Repoet inneholder den ferdigbygde webappen som GitHub Pages publiserer fra grene
 
 | Fil | Beskrivelse |
 |---|---|
-| `index.html` | Hele appen: HTML, CSS, JavaScript og ordlisten (JSON) i én fil, uten eksterne avhengigheter |
+| `index.html` | Hele appen: HTML, CSS, JavaScript, skrifttype og ordlisten (JSON) i én fil, uten eksterne avhengigheter |
 | `sw.js` | Service worker som lagrer filene for offline-bruk |
 | `manifest.webmanifest` | PWA-manifest med navn, farger og ikoner |
 | `icon-*.png` | App-ikoner: 180 px for iOS, 192/512 px for Android og datamaskin, og et maskerbart ikon |

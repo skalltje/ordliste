@@ -2,7 +2,7 @@
 // Versjonen endres ved hvert bygg med nytt innhold, slik at gammel cache byttes ut.
 "use strict";
 
-var CACHE = "ordliste-b5880d6c4f46";
+var CACHE = "ordliste-87fd7cabf996";
 var FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
 
 self.addEventListener("install", function (event) {
@@ -28,7 +28,7 @@ self.addEventListener("activate", function (event) {
       .then(function () { return self.clients.matchAll({ type: "window" }); })
       .then(function (clients) {
         // Gi åpne vinduer beskjed, slik at de kan tilby å laste inn den nye versjonen.
-        clients.forEach(function (client) { client.postMessage({ type: "aktivert", versjon: "b5880d6c4f46" }); });
+        clients.forEach(function (client) { client.postMessage({ type: "aktivert", versjon: "87fd7cabf996" }); });
       })
   );
 });
