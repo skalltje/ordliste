@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ordliste Norsk ↔️ Engelsk har flyttet</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1c222b">
+<link rel="canonical" href="https://ordliste.github.io/">
+<meta http-equiv="refresh" content="8; url=https://ordliste.github.io/">
+<style>
+:root{--bg:#2a313b;--panel:#1c222b;--ink:#f2f4f7;--muted:rgba(242,244,247,.68);--accent:#9cc4b2;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 "Source Sans Pro","Source Sans 3",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.top{background:var(--panel);border-bottom:3px solid var(--accent)}
+.top p{max-width:720px;margin:0 auto;padding:32px 16px;font-size:36px;line-height:1.1;font-weight:600}
+main{max-width:720px;margin:40px auto;padding:0 16px}
+.box{background:var(--panel);border-radius:6px;padding:32px 36px}
+h1{margin:0 0 12px;font-size:28px;font-weight:400;color:var(--accent)}
+a.go{display:inline-block;margin:16px 0 8px;padding:12px 20px;border-radius:6px;background:var(--accent);color:var(--panel);text-decoration:none;font-weight:600;font-size:20px;word-break:break-all}
+.small{color:var(--muted);font-size:15px}
+@media (max-width:560px){.top p{font-size:26px;padding:20px 16px}.box{padding:20px 16px}}
+</style>
+</head>
+<body>
+<div class="top"><p>Ordliste Norsk ↔️ Engelsk</p></div>
+<main><div class="box">
+  <h1>Siden har flyttet</h1>
+  <p>Ordlisten har fått ny adresse:</p>
+  <a class="go" id="go" href="https://ordliste.github.io/">ordliste.github.io</a>
+  <p class="small">Du blir sendt videre om noen sekunder. Skjer det ikke, trykk på knappen over. Har du lagret den gamle adressen som bokmerke, bør du bytte den ut med den nye.</p>
+  <p class="small">Har du lagt ordlisten på Hjem-skjermen, fjerner du den gamle og legger til den nye adressen på samme måte. Favoritter og siste søk følger dessverre ikke med til den nye adressen.</p>
+</div></main>
+<script>
+  // Den gamle appen hadde en service worker. Fjern rester av den, så den gamle adressen ikke
+  // fortsetter å vise den lagrede appen.
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function (regs) {
+      regs.forEach(function (reg) { if (reg.scope.indexOf("/ordliste/") !== -1) reg.unregister(); });
+    }).catch(function () {});
+  }
+  var url = "https://ordliste.github.io/";
+  setTimeout(function () { location.replace(url); }, 4000);
+</script>
+</body>
+</html>

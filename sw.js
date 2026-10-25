@@ -1,51 +1,21 @@
-// Service worker for Ordliste. Genereres av scripts/build.py, ikke rediger dist/sw.js direkte.
-// Versjonen endres ved hvert bygg med nytt innhold, slik at gammel cache byttes ut.
+// Avviklings-service worker for den gamle adressen skalltje.github.io/ordliste/.
+// Nettleseren henter denne når den sjekker etter oppdateringer av den gamle appen. Den sletter
+// ordlistens cache, avregistrerer seg selv og laster åpne vinduer på nytt, slik at flyttesiden vises.
 "use strict";
 
-var CACHE = "ordliste-87fd7cabf996";
-var FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
-
-self.addEventListener("install", function (event) {
-  event.waitUntil(
-    caches.open(CACHE)
-      .then(function (cache) {
-        // cache: "reload" hopper over nettleserens HTTP-cache, så vi får nyeste versjon.
-        return cache.addAll(FILES.map(function (url) { return new Request(url, { cache: "reload" }); }));
-      })
-      .then(function () { return self.skipWaiting(); })
-  );
-});
+self.addEventListener("install", function () { self.skipWaiting(); });
 
 self.addEventListener("activate", function (event) {
   event.waitUntil(
     caches.keys()
       .then(function (keys) {
-        return Promise.all(keys.map(function (key) {
-          if (key.indexOf("ordliste-") === 0 && key !== CACHE) return caches.delete(key);
-        }));
+        return Promise.all(keys.filter(function (k) { return k.indexOf("ordliste-") === 0; })
+          .map(function (k) { return caches.delete(k); }));
       })
-      .then(function () { return self.clients.claim(); })
       .then(function () { return self.clients.matchAll({ type: "window" }); })
       .then(function (clients) {
-        // Gi åpne vinduer beskjed, slik at de kan tilby å laste inn den nye versjonen.
-        clients.forEach(function (client) { client.postMessage({ type: "aktivert", versjon: "87fd7cabf996" }); });
+        return Promise.all(clients.map(function (client) { return client.navigate(client.url).catch(function () {}); }));
       })
-  );
-});
-
-// Cache først: appen starter umiddelbart og virker helt uten nett.
-self.addEventListener("fetch", function (event) {
-  var request = event.request;
-  if (request.method !== "GET" || new URL(request.url).origin !== self.location.origin) return;
-
-  if (request.mode === "navigate") {
-    event.respondWith(
-      caches.match("./index.html").then(function (cached) { return cached || fetch(request); })
-    );
-    return;
-  }
-
-  event.respondWith(
-    caches.match(request, { ignoreSearch: true }).then(function (cached) { return cached || fetch(request); })
+      .then(function () { return self.registration.unregister(); })
   );
 });
