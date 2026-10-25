@@ -1,6 +1,6 @@
 # Ordliste Norsk ↔️ Engelsk
 
-En liten ordliste-app for engelsk–norsk og norsk–engelsk, laget for iPhone. Den virker helt uten nett når den er installert.
+En webapp med ordliste for engelsk–norsk og norsk–engelsk. Den kjøres fra GitHub Pages og virker i moderne nettlesere på mobil, nettbrett og datamaskin. Den kan installeres som en app (PWA) og brukes helt uten nett.
 
 **Åpne appen:** https://skalltje.github.io/ordliste/
 
@@ -16,30 +16,34 @@ Ordlisten er basert på *Pedersen K. Ordliste*, med rundt 1000 ordpar. Mange av 
 - **Offline:** Etter første besøk kan appen brukes uten nett, også i flymodus.
 - **Mørk og lys modus** etter systeminnstillingen.
 
-## Installere på iPhone
+## Bruk og installering
 
-1. Åpne https://skalltje.github.io/ordliste/ i **Safari**.
-2. Trykk **Del** (firkant med pil opp) og velg **Legg til på Hjem-skjerm**.
-3. Åpne appen fra Hjem-skjermen én gang mens du har nett. Etter det virker den offline.
+Appen kan brukes rett i nettleseren på https://skalltje.github.io/ordliste/, uten installering. Vil du ha den som en egen app med ikon, gjør du slik:
+
+| Enhet | Slik installerer du |
+|---|---|
+| **iPhone / iPad** | Åpne adressen i Safari, trykk **Del** (firkant med pil opp) og velg **Legg til på Hjem-skjerm** |
+| **Android** | Åpne adressen i Chrome, åpne menyen **⋮** og velg **Installer app** eller **Legg til på startsiden** |
+| **Mac / Windows / Linux** | Åpne adressen i Chrome eller Edge og klikk installer-ikonet i adressefeltet. I Safari på Mac: **Fil → Legg til i Dock** |
+
+Åpne appen én gang mens du har nett. Etter det virker den offline, både installert og i nettleseren.
 
 Når en ny versjon er publisert, viser appen *«En ny versjon av ordlisten er klar»* neste gang den åpnes med nett. Trykk **Oppdater**.
 
-Appen virker også i Android Chrome og nettlesere på datamaskin. I Chrome kan den installeres fra adressefeltet eller menyen.
-
 ## Personvern
 
-Appen har ingen sporing, ingen informasjonskapsler og ingen server-del. Favoritter og søkehistorikk lagres bare i nettleserens `localStorage` på din egen enhet. Sletter du appen fra Hjem-skjermen, forsvinner de.
+Appen har ingen sporing, ingen informasjonskapsler og ingen server-del. GitHub Pages leverer bare de statiske filene. Favoritter og søkehistorikk lagres bare i nettleserens `localStorage` på din egen enhet, og hver nettleser og installert app har sin egen kopi. Avinstallerer du appen eller tømmer nettstedsdata, forsvinner de.
 
 ## Innhold i repoet
 
-Repoet inneholder den ferdigbygde appen som GitHub Pages viser:
+Repoet inneholder den ferdigbygde webappen som GitHub Pages publiserer fra grenen `main`:
 
 | Fil | Beskrivelse |
 |---|---|
 | `index.html` | Hele appen: HTML, CSS, JavaScript og ordlisten (JSON) i én fil, uten eksterne avhengigheter |
 | `sw.js` | Service worker som lagrer filene for offline-bruk |
 | `manifest.webmanifest` | PWA-manifest med navn, farger og ikoner |
-| `icon-*.png` | App-ikoner, inkludert maskerbart ikon for Android |
+| `icon-*.png` | App-ikoner: 180 px for iOS, 192/512 px for Android og datamaskin, og et maskerbart ikon |
 | `.nojekyll` | Får GitHub Pages til å vise filene uendret |
 
 > **Ikke rediger disse filene direkte.** De genereres av et byggescript. Endringer gjort her blir overskrevet ved neste bygg.
